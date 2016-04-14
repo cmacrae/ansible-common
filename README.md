@@ -1,6 +1,6 @@
 Common
 ======
-An ansible role to manage miscellaneous types of data/constructs in an ad-hoc fashion.
+An ansible role to manage miscellaneous types of data/resources/constructs in an ad-hoc fashion.
 
 Current manageable resources
 ----------------------------
@@ -21,6 +21,8 @@ Ansible >= 2.0.0
 
 Example definitions
 ----------------
+You can define any data/resources/constructs at any level you wish (`host_vars`,`group_vars` playbook `vars`, a `vars` file, in a role that depends on this role, etc.)
+
 ### Users
 ``` yaml
 common_users:
@@ -85,7 +87,7 @@ common_files:
 ```
 
 ### Remote files (URL fetching)
-```
+``` yaml
 common_fetch_files:
   git_fat:
     url: 'https://raw.githubusercontent.com/jedbrown/git-fat/master/git-fat'
