@@ -51,9 +51,9 @@ common_users:
 ``` yaml
 common_groups:
   mygroup: {}
-    my_other_group:
-     gid: 9001
-     system: true
+  my_other_group:
+    gid: 9001
+	system: true
 ```
 
 ### Cron jobs
