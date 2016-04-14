@@ -1,0 +1,17 @@
+---
+  - name: Ensure any cron jobs defined are present
+    cron:
+      backup: "{{ item.value.backup|default(false) }}"
+      cron_file: "{{ item.value.cron_file|default(omit) }}"
+      day: "{{ item.value.day|default('*') }}"
+      disabled: "{{ item.value.disabled|default(false) }}"
+      hour: "{{ item.value.hour|default('*') }}"
+      job: "{{ item.value.job|default(omit) }}"
+      minute: "{{ item.value.minute|default('*')}}"
+      name: "{{ item.key }}"
+      reboot: "{{ item.value.reboot|default(false) }}"
+      special_time: "{{ item.value.special_time|default(omit) }}"
+      state: "{{ item.value.state|default('present') }}"
+      user: "{{ item.value.user|default('root') }}"
+      weekday: "{{ item.value.weekday|default('*') }}"
+    with_dict: "{{ common_cron_jobs|default({}) }}"

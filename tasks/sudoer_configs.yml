@@ -1,0 +1,11 @@
+---
+
+  - name: Deploy any sudoer definitions
+    template:
+      src: "{{ item.value.src|default('sudoer.j2')}}"
+      dest: /etc/sudoers.d/10-{{ item.key }}
+      owner: root
+      group: root
+      mode: 0644
+      validate: 'visudo -cf %s'
+    with_dict: "{{ common_sudoer_configs|default({}) }}"

@@ -1,0 +1,9 @@
+---
+
+  - name: Ensure any groups defined are present
+    group:
+      gid: "{{ item.value.gid|default(omit) }}"
+      name: "{{ item.key }}"
+      state: "{{ item.value.state|default('present') }}"
+      system: "{{ item.value.system|default(false) }}"
+    with_dict: "{{ common_groups|default({}) }}"

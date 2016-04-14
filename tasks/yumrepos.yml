@@ -1,0 +1,10 @@
+---
+
+  - name: Deploy any Yum repo definitions
+    template:
+      src: "{{ item.value.src|default('yumrepo.j2')}}"
+      dest: /etc/yum.repos.d/{{ item.key }}.repo
+      owner: root
+      group: root
+      mode: 0644
+    with_dict: "{{ common_yumrepos|default({}) }}"

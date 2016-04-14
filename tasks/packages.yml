@@ -1,0 +1,6 @@
+---
+  - name: Ensure any extra packages defined are installed
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ common_packages|default([]) }}"

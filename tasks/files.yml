@@ -1,0 +1,39 @@
+---
+
+  - name: Ensure any files defined have been deployed
+    copy:
+      backup: "{{ item.value.backup|default(false) }}"
+      content: "{{ item.value.content|default(omit) }}"
+      dest: "{{ item.key }}"
+      directory_mode: "{{ item.value.directory_mode|default(omit) }}"
+      follow: "{{ item.value.follow|default(false) }}"
+      force: "{{ item.value.force|default(false) }}"
+      group: "{{ item.value.group|default(omit) }}"
+      mode: "{{ item.value.mode|default(omit) }}"
+      owner: "{{ item.value.owner|default(omit) }}"
+      remote_src: "{{ item.value.remote_src|default(false) }}"
+      selevel: "{{ item.value.selevel|default(omit) }}"
+      serole: "{{ item.value.serole|default(omit) }}"
+      seuser: "{{ item.value.seuser|default(omit) }}"
+      src: "{{ item.value.src|default(omit) }}"
+      validate: "{{ item.value.validate|default(omit) }}"
+    with_dict: "{{ common_files|default({}) }}"
+
+  - name: Ensure any remote files defined have been fetched
+    get_url:
+      checksum: "{{ item.value.checksum|default(omit) }}"
+      dest: "{{ item.value.dest|default(omit) }}"
+      force: "{{ item.value.force|default(false) }}"
+      force_basic_auth: "{{ item.value.force_basic_auth|default(false) }}"
+      headers: "{{ item.value.headers|default(omit) }}"
+      sha256sum: "{{ item.value.sha256sum|default(omit) }}"
+      timeout: "{{ item.value.timeout|default(10) }}"
+      url: "{{ item.value.url|default(omit) }}"
+      url_password: "{{ item.value.url_password|default(omit) }}"
+      url_username: "{{ item.value.username|default(omit) }}"
+      use_proxy: "{{ item.value.use_proxy|default(false) }}"
+      validate_certs: "{{ item.value.validate_certs|default(true) }}"
+      owner: "{{ item.value.owner|default(omit) }}"
+      group: "{{ item.value.group|default(omit) }}"
+      mode: "{{ item.value.mode|default(omit) }}"
+    with_dict: "{{ common_fetch_files|default({}) }}"

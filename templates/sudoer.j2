@@ -1,0 +1,4 @@
+{{ ansible_managed|comment}}
+{% for rule in item.value.content %}
+{{ rule }}
+{% endfor %}

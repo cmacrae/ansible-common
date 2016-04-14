@@ -1,0 +1,21 @@
+---
+
+  - name: Ensure any file lines defined are present
+    lineinfile:
+      backrefs: "{{ item.value.backrefs|default(false) }}"
+      backup: "{{ item.value.backup|default(false) }}"
+      create: "{{ item.value.create|default(false) }}"
+      dest: "{{ item.key }}"
+      group: "{{ item.value.group|default(omit) }}"
+      insertafter: "{{ item.value.insertafter|default(omit) }}"
+      line: "{{ item.value.line|default(omit) }}"
+      mode: "{{ item.value.mode|default(omit) }}"
+      owner: "{{ item.value.owner|default(omit) }}"
+      regexp: "{{ item.value.regexp|default(omit) }}"
+      selevel: "{{ item.value.selevel|default(omit) }}"
+      serole: "{{ item.value.serole|default(omit) }}"
+      setype: "{{ item.value.setype|default(omit) }}"
+      seuser: "{{ item.value.seuser|default(omit) }}"
+      state: "{{ item.value.state|default('present') }}"
+      validate: "{{ item.value.validate|default(omit) }}"
+    with_dict: "{{ common_file_lines|default({}) }}"

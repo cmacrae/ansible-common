@@ -1,0 +1,29 @@
+---
+
+  - name: Ensure any users defined are present
+    user:
+      append: "{{ item.value.append|default(false) }}"
+      comment: "{{ item.value.comment|default(omit) }}"
+      createhome: "{{ item.value.createhome|default(true) }}"
+      expires: "{{ item.value.expires|default(omit) }}"
+      force: "{{ item.value.force|default(false) }}"
+      generate_ssh_key: "{{ item.value.generate_ssh_key|default(false) }}"
+      group: "{{ item.value.group|default(omit) }}"
+      groups: "{{ item.value.groups|default(omit) }}"
+      home: "{{ item.value.home|default(omit) }}"
+      move_home: "{{ item.value.move_home|default(false) }}"
+      name: "{{ item.key }}"
+      non_unique: "{{ item.value.non_unique|default(false) }}"
+      password: "{{ item.value.password|default(omit) }}"
+      shell: "{{ item.value.shell|default('/bin/bash') }}"
+      skeleton: "{{ item.value.skeleton|default('/etc/skel') }}"
+      ssh_key_bits: "{{ item.value.ssh_key_bits|default(2048) }}"
+      ssh_key_comment: "{{ item.value.ssh_key_comment|default('ansible-generated on $HOSTNAME') }}"
+      ssh_key_file: "{{ item.value.ssh_key_file|default('.ssh/id_rsa') }}"
+      ssh_key_passphrase: "{{ item.value.ssh_key_passphrase|default(omit) }}"
+      ssh_key_type: "{{ item.value.ssh_key_type|default('rsa') }}"
+      state: present
+      system: "{{ item.value.system|default(false) }}"
+      uid: "{{ item.value.uid|default(omit) }}"
+      update_password: "{{ item.value.update_password|default('always') }}"
+    with_dict: "{{ common_users|default({}) }}"

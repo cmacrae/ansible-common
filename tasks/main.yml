@@ -1,0 +1,30 @@
+---
+  - include: yumrepos.yml
+    tags:
+      - repos
+      - packages
+
+  - include: packages.yml
+    tags: packages
+
+  - include: groups.yml
+    tags: groups
+
+  - include: users.yml
+    tags: users
+
+  - include: files.yml
+    tags: files
+
+  - include: file_line.yml
+    tags: file_lines
+
+  - include: sudoer_configs.yml
+    tags:
+      - sudoers
+      - sudoers_configs
+
+  - include: cron.yml
+    tags:
+      - cron
+      - cron_jobs
