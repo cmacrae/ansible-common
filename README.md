@@ -26,6 +26,7 @@ Variables
 | `common_groups` | not_defined | A dictionary of misc groups to manage (supports all params presented by the `group` module) |
 | `common_cron_jobs` | not_defined | A dictionary of misc cron jobs to manage (supports all params presented by the `cron` module) |
 | `common_packages` | not defined | A list of misc packages to install |
+| `common_pips` | not defined | A list of misc Python packages to install via `pip` |
 | `common_files` | not_defined | A dictionary of misc files to manage (supports all params presented by the `file` module) |
 | `common_fetch_files` | not_defined | A dictionary of misc remote files to fetch from from urls (supports all params presented by the `get_url` module) |
 | `common_file_lines` | not_defined | A dictionary of file lines to manage (supports all params presented by the `lineinfile` module) |
@@ -81,6 +82,13 @@ common_cron_jobs:
 common_packages:
   - mg
   - golang
+```
+
+### Python Packages (via `pip`)
+``` yaml
+common_pips:
+  - ansible
+  - Jinja2
 ```
 
 ### Files

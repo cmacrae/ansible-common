@@ -1,0 +1,6 @@
+---
+  - name: Ensure any Python pip definitions are deployed
+    pip:
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ common_pips|default([]) }}"

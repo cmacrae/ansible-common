@@ -7,6 +7,11 @@
   - include: packages.yml
     tags: packages
 
+  - include: pips.yml
+    tags:
+      - packages
+      - pips
+
   - include: groups.yml
     tags: groups
 
