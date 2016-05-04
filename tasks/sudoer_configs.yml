@@ -3,7 +3,7 @@
   - name: Deploy any sudoer definitions
     template:
       src: "{{ item.value.src|default('sudoer.j2')}}"
-      dest: /etc/sudoers.d/10-{{ item.key }}
+      dest: /etc/sudoers.d/10_{{ item.key }}
       owner: root
       group: root
       mode: 0644
