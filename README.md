@@ -32,6 +32,10 @@ Variables
 | `common_file_lines` | not_defined | A dictionary of file lines to manage (supports all params presented by the `lineinfile` module) |
 | `common_sudoer_configs` | not_defined | A dictionary of misc sudoers rules to manage |
 | `common_yumrepos` | not_defined | A dictionary of Yum repositories to manage |
+| `common_postgres_dbs` | not_defined | A dictionary of Postres databases to manage (supports all params presented by the `postgresql_db` module) |
+| `common_postgres_users` | not_defined | A dictionary of Postres users to manage (supports all params presented by the `postgresql_users` module) |
+| `common_postgres_extensions` | not_defined | A dictionary of Postres extensions to manage (supports all params presented by the `postgresql_ext` module) |
+| `common_postgres_langs` | not_defined | A dictionary of Postres procedural languages to manage (supports all params presented by the `postgresql_lang` module) |
 
 
 Example definitions
@@ -156,6 +160,39 @@ common_yumrepos:
     baseurl: 'http://download.rethinkdb.com/centos/6/x86_64'
     gpgcheck: 0
     enabled: 1
+```
+
+### Postgres databases
+``` yaml
+common_postgres_dbs:
+  example_db:
+    login_password: 5uP3r5ecr37
+    owner: some_user
+    template: example_template0
+```
+
+### Postgres users
+``` yaml
+common_postgres_users:
+  example_user:
+    db: some_test_db
+	encrypted: true
+    login_password: 5uP3r5ecr37
+```
+
+### Postgres extensions
+``` yaml
+common_postgres_extensions:
+  example_extension:
+    db: some_example_db
+```
+
+### Postgres languages
+``` yaml
+common_postgres_lang:
+  example_lang:
+	cascade: true
+	db: example_db
 ```
 
 License

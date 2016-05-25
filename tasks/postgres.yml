@@ -1,0 +1,63 @@
+---
+  - name: Ensure any Postgres DBs defined are present
+    postgresql_db:
+      encoding: "{{ item.value.encoding|default(omit) }}"
+      lc_collate: "{{ item.value.lc_collate|default(omit) }}"
+      lc_ctype: "{{ item.value.lc_type|default(omit) }}"
+      login_host: "{{ item.value.login_host|defaut('localhost') }}"
+      login_password: "{{ item.value.login_password|default(omit) }}"
+      login_unix_socket: "{{ item.value.login_unix_socket|default(omit) }}"
+      login_user: "{{ item.value.login_user|default(omit) }}"
+      name: "{{ item.key }}"
+      owner: "{{ item.value.owner|default(omit) }}"
+      port: "{{ item.value.port|default('5432') }}"
+      state: "{{ item.value.state|default('present') }}"
+      template: "{{ item.value.template|default(omit) }}"
+    with_dict: "{{ common_postgres_dbs|default({}) }}"
+
+  - name: Ensure any Postgres users defined are present
+    postgresql_user:
+      db: "{{ item.value.db|default(omit) }}"
+      encrypted: "{{ item.value.encrypted|default(omit) }}"
+      expires: "{{ item.value.expires|default(omit) }}"
+      fail_on_user: "{{ item.value.fail_on_user|default(true) }}"
+      login_host: "{{ item.value.login_host|default('localhost') }}"
+      login_password: "{{ item.value.login_password|default(omit) }}"
+      login_unix_socket: "{{ item.value.login_unix_socket|default(omit) }}"
+      login_user: "{{ item.value.login_user|default('postgres') }}"
+      name: "{{ item.key }}"
+      no_password_changes: "{{ item.value.no_password_changes|default(false) }}"
+      password: "{{ item.value.password|default(omit) }}"
+      port: "{{ item.value.port|default('5432') }}"
+      priv: "{{ item.value.priv|default(omit) }}"
+      role_attr_flags: "{{ item.value.role_attr_flags|default(omit) }}"
+      state: "{{ item.value.state|default('present') }}"
+    with_dict: "{{ common_postgres_users|default({}) }}"
+
+
+  - name: Ensure any Postgres extensions defined are present
+    postgresql_ext:
+      db: "{{ item.value.db|default(omit) }}"
+      login_host: "{{ item.value.login_host|('localhost') }}"
+      login_password: "{{ item.value.login_password|default(omit) }}"
+      login_user: "{{ item.value.login_user|default(omit) }}"
+      name: "{{ item.key }}"
+      port: "{{ item.value.port|default('5432') }}"
+      state: "{{ item.value.state|default('present ') }}"
+    with_dict: "{{ common_postgres_extensions|default({}) }}"
+
+
+  - name: Ensure any Postgres lang definitions are enforced
+    postgresql_lang:
+      cascade: "{{ item.value.cascade|default(omit) }}"
+      db: "{{ item.value.db|default(omit) }}"
+      fail_on_drop: "{{ item.value.fail_on_drop|default(true) }}"
+      force_trust: "{{ item.value.force_trust|default(omit) }}"
+      lang: "{{ item.key }}"
+      login_host: "{{ item.value.login_host|default('localhost') }}"
+      login_password: "{{ item.value.login_password|default(omit) }}"
+      login_user: "{{ item.value.login_user|default('postgres') }}"
+      port: "{{ item.value.port|default('5432' )}}"
+      state: "{{ item.value.state|default('present' )}}"
+      trust: "{{ item.value.trust|default(omit) }}"
+    with_items: "{{ common_postgres_langs|default({}) }}"

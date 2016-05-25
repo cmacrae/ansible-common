@@ -33,3 +33,6 @@
     tags:
       - cron
       - cron_jobs
+
+  - include: postgres.yml
+    tags: postgres
