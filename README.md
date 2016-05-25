@@ -13,6 +13,7 @@ Current manageable resources
 - Lines in files
 - `sudo` configurations
 - Package repositories (Yum at the moment, more to come!)
+- Postgres databases, users, extensions, languages
 
 Requirements
 ------------
