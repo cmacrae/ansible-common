@@ -6,6 +6,6 @@
       dest: /etc/sudoers.d/10_{{ item.key }}
       owner: root
       group: root
-      mode: 0644
+      mode: 0440
       validate: 'visudo -cf %s'
     with_dict: "{{ common_sudoer_configs|default({}) }}"
